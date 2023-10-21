@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show data</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    
+    <header>
+        <a href="/"><i class="fa fa-home"></i></a>
+        <h2><label for="">Upload CSV File</label></h2>
+    </header>
+
+    <div class="data-table">
+        <h1>File: <%= title %></h1>
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <% for(let i=0; i<head.length; i++){ %>
+                        <th>
+                            <%= head[i] %>
+                        </th>
+                    <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<data.length; i++){ %>
+                    <tr>
+                        <% for(let j=0; j<head.length; j++){ %>
+                            <td>
+                                <%= data[i][head[j]] %>
+                            </td>
+                        <% } %>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        let table = new DataTable('#table');
+    });
+    </script>
+</body>
+</html>

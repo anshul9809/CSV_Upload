@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>CSV Upload</title>
+</head>
+<body>
+
+    <header>
+        <a href="/"><i class="fa fa-home"></i></a>
+        <h2><label for="">Upload CSV File</label></h2>
+    </header>
+    <div class="form-container">
+        <div class="form-wrapper">
+            <form action="/create/" method="post" enctype="multipart/form-data">
+                <label for="formFile">
+                    <div class="form-group">
+                        <input type="file" accept=".csv" name="file" id="formFile" hidden>
+                        <label for="">Choose File</label>
+                        <div class="file-name" id="file-name"></div>
+                    </div>
+                </label>
+                <div class="submit-div">
+                    <button type="submit" class="btn">Upload it</button>
+                </div>
+            </form>
+        </div>
+        <div class="form-wrapper">
+            <h1>List of files</h1>
+            <%for(i of file){%>
+                <div class="file-div">
+                    <div class="file-desc">
+                        <a href="/view/<%= i.file %>"><%= i.originalName %></a>
+                    </div>
+                    <div class="delete">
+                        <a href="/delete/<%= i.file %>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            <%}%>
+        </div>
+    </div>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
